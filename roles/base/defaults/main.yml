@@ -1,0 +1,27 @@
+---
+# defaults file for base
+
+# System hostname
+base_hostname: "arch"
+
+# System locales
+base_locales:
+  - "en_US.UTF-8"
+
+# By default the first locale in `base_locales` is used to set the `LANG`
+# variable in /etc/locale.conf. This can be overridden by setting the
+# `base_lang` variable.
+#base_lang: "en_GB.UTF-8"
+
+# System timezone
+base_timezone: "America/Chicago"
+
+# Whether the hardware clock is in UTC or in local timezone.
+base_hwclock: "UTC" # "UTC" or "local"
+
+# Packages to install
+base_packages:
+  - base
+  - coreutils
+  - man-db
+  - man-pages

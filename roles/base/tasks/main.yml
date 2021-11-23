@@ -1,0 +1,59 @@
+---
+# tasks file for base
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ base_hostname }}"
+
+- name: Generate /etc/hosts
+  ansible.builtin.template:
+    src: hosts.j2
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Generate locales
+  community.general.locale_gen:
+    name: "{{ item }}"
+  with_items: "{{ base_locales }}"
+
+- name: Create locale.conf
+  ansible.builtin.copy:
+    dest: /etc/locale.conf
+    content: "LANG={{ base_lang | default(base_locales[0]) }}\n"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Set timezone
+  community.general.timezone:
+    name: "{{ base_timezone }}"
+    hwclock: "{{ base_hwclock }}"
+
+- name: Update packages
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install packages
+  community.general.pacman:
+    name: "{{ base_packages }}"
+    state: latest
+
+- name: Sync pacman files database
+  ansible.builtin.command: pacman -Fy
+
+- name: Create users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    create_home: "{{ item.create_home | default('yes') }}"
+    home: "{{ item.home | default('/home/' + item.name) }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    password: "{{ item.password | default(None) }}"
+    groups: "{{ item.groups | default(None) }}"
+    generate_ssh_key: "{{ item.generate_ssh_key | default('no') }}"
+    ssh_key_type: "{{ item.ssh_key_type | default('ecdsa') }}"
+    ssh_key_bits: "{{ item.ssh_key_bits | default(521) }}"
+    ssh_key_comment:
+      "{{ item.ssh_key_comment | default(item.name + '@' + base_hostname) }}"
+  with_items: "{{ base_users }}"
