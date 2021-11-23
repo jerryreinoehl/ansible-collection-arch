@@ -19,6 +19,9 @@ base_timezone: "America/Chicago"
 # Whether the hardware clock is in UTC or in local timezone.
 base_hwclock: "UTC" # "UTC" or "local"
 
+# Number of simultaneous threads pacman should be configured to use.
+base_pacman_threads: 10
+
 # Packages to install
 base_packages:
   - base
