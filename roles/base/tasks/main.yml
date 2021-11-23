@@ -65,3 +65,17 @@
     ssh_key_comment:
       "{{ item.ssh_key_comment | default(item.name + '@' + base_hostname) }}"
   with_items: "{{ base_users }}"
+
+- name: Install AMD microcode
+  community.general.pacman:
+    name: amd-ucode
+    state: latest
+  when: "base_ucode_enabled and 'amd' in ansible_facts.processor[1].lower()"
+  notify: update-grub
+
+- name: Install Intel microcode
+  community.general.pacman:
+    name: intel-ucode
+    state: latest
+  when: "base_ucode_enabled and 'intel' in ansible_facts.processor[1].lower()"
+  notify: update-grub

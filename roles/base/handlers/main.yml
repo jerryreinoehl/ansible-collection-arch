@@ -1,2 +1,4 @@
 ---
 # handlers file for base
+- name: update-grub
+  command: "grub-mkconfig -o {{ base_grub_cfg }}"
