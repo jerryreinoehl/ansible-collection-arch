@@ -4,3 +4,8 @@
   ansible.builtin.systemd:
     name: NetworkManager.service
     state: restarted
+
+- name: restart-systemd-resolved
+  ansible.builtin.systemd:
+    name: systemd-resolved.service
+    state: restarted

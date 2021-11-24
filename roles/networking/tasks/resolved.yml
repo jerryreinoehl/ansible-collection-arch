@@ -1,0 +1,23 @@
+---
+- name: Configure systemd-resolved
+  ansible.builtin.copy:
+    src: resolved.conf
+    dest: /etc/systemd/resolved.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: restart-systemd-resolved
+
+- name: Symlink /etc/resolv.conf
+  ansible.builtin.file:
+    src: /run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+    force: yes
+  notify: restart-systemd-resolved
+
+- name: Enable systemd-resolved
+  ansible.builtin.systemd:
+    name: systemd-resolved.service
+    enabled: yes
+    state: started

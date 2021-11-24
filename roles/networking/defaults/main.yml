@@ -9,3 +9,6 @@ networking_nm_dispatcher_enabled: no
 
 # When enabled enable NetworkManager-wait-online.service.
 networking_nm_wait_online_enabled: no
+
+# When enabled configure systemd-resolved.
+networking_resolved_enabled: yes
