@@ -34,3 +34,6 @@ base_ucode_enabled: yes
 
 # Path of grub.cfg
 base_grub_cfg: "/boot/grub/grub.cfg"
+
+# Configure dash to be /bin/sh.
+base_dash_sh_enabled: yes

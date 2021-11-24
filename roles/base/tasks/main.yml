@@ -87,3 +87,6 @@
     state: latest
   when: "base_ucode_enabled and 'intel' in ansible_facts.processor[1].lower()"
   notify: update-grub
+
+- ansible.builtin.import_tasks: dash.yml
+  when: base_dash_sh_enabled

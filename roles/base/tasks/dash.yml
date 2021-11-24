@@ -1,0 +1,19 @@
+---
+- name: Install dash
+  community.general.pacman:
+    name: dash
+    state: latest
+
+- name: Link /bin/sh to dash
+  ansible.builtin.file:
+    src: dash
+    dest: /bin/sh
+    state: link
+
+- name: Install pacman hook
+  ansible.builtin.copy:
+    src: dash-bin-sh.hook
+    dest: /etc/pacman.d/hooks/
+    owner: root
+    group: root
+    mode: "0644"
