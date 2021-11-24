@@ -4,7 +4,7 @@
   when: networking_nm_enabled
 
 - ansible.builtin.import_tasks: chrony.yml
-  when: network_chrony_enabled
+  when: networking_chrony_enabled
 
 - ansible.builtin.import_tasks: resolved.yml
   when: networking_resolved_enabled
