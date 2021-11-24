@@ -1,0 +1,14 @@
+---
+- name: Install AMD microcode
+  community.general.pacman:
+    name: amd-ucode
+    state: latest
+  when: "'amd' in ansible_facts.processor[1].lower()"
+  notify: update-grub
+
+- name: Install Intel microcode
+  community.general.pacman:
+    name: intel-ucode
+    state: latest
+  when: "'intel' in ansible_facts.processor[1].lower()"
+  notify: update-grub
