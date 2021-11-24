@@ -1,0 +1,11 @@
+---
+- name: Install chrony
+  community.general.pacman:
+    name: chrony
+    state: latest
+
+- name: Enable chronyd
+  ansible.builtin.systemd:
+    name: chronyd.service
+    enabled: yes
+    state: started
