@@ -8,3 +8,6 @@
 
 - ansible.builtin.import_tasks: resolved.yml
   when: networking_resolved_enabled
+
+- ansible.builtin.import_tasks: iptables.yml
+  when: networking_iptables_enabled

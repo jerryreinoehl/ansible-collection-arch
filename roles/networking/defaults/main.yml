@@ -15,3 +15,9 @@ networking_chrony_enabled: yes
 
 # When enabled configure systemd-resolved.
 networking_resolved_enabled: yes
+
+# When enabled configure iptables.
+networking_iptables_enabled: yes
+
+# Use to override default iptables.rules file.
+networking_iptables_rules_file: iptables.rules.default

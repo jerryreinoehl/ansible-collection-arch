@@ -1,0 +1,20 @@
+---
+- name: Install iptables
+  community.general.pacman:
+    name: iptables
+    state: latest
+
+- name: Configure iptables
+  ansible.builtin.copy:
+    src: "{{ networking_iptables_rules_file }}"
+    dest: /etc/iptables/iptables.rules
+    owner: root
+    group: root
+    mode: "0600"
+  notify: restart-iptables
+
+- name: Enable iptables
+  ansible.builtin.systemd:
+    name: iptables.service
+    enabled: yes
+    state: started
