@@ -51,6 +51,14 @@
 - name: Sync pacman files database
   ansible.builtin.command: pacman -Fy
 
+- name: Configure opendoas
+  ansible.builtin.copy:
+    src: doas.conf
+    dest: /etc/doas.conf
+    owner: root
+    group: root
+    mode: "0400"
+
 - name: Create users
   ansible.builtin.user:
     name: "{{ item.name }}"
