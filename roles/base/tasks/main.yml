@@ -51,14 +51,6 @@
 - name: Sync pacman files database
   ansible.builtin.command: pacman -Fy
 
-- name: Configure opendoas
-  ansible.builtin.copy:
-    src: doas.conf
-    dest: /etc/doas.conf
-    owner: root
-    group: root
-    mode: "0400"
-
 - name: Create users
   ansible.builtin.user:
     name: "{{ item.name }}"
@@ -73,6 +65,9 @@
     ssh_key_comment:
       "{{ item.ssh_key_comment | default(item.name + '@' + base_hostname) }}"
   with_items: "{{ base_users }}"
+
+- ansible.builtin.import_tasks: doas.yml
+  when: base_doas_enabled
 
 - ansible.builtin.import_tasks: microcode.yml
   when: base_ucode_enabled

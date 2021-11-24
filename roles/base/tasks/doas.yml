@@ -1,0 +1,13 @@
+---
+- name: Install opendoas
+  community.general.pacman:
+    name: opendoas
+    state: latest
+
+- name: Configure opendoas
+  ansible.builtin.copy:
+    src: doas.conf
+    dest: /etc/doas.conf
+    owner: root
+    group: root
+    mode: "0400"

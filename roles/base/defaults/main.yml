@@ -29,6 +29,9 @@ base_packages:
   - man-db
   - man-pages
 
+# When enabled configure opendoas.
+base_doas_enabled: yes
+
 # When enabled install microcode updates.
 base_ucode_enabled: yes
 
