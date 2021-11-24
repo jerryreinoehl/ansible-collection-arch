@@ -1,0 +1,4 @@
+---
+# tasks file for networking
+- ansible.builtin.import_tasks: networkmanager.yml
+  when: networking_nm_enabled

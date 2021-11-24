@@ -1,0 +1,6 @@
+---
+# handlers file for networking
+- name: restart-networkmanager
+  ansible.builtin.systemd:
+    name: NetworkManager.service
+    state: restarted

@@ -1,0 +1,40 @@
+---
+- name: Install packages
+  community.general.pacman:
+    name:
+      - dhclient
+      - networkmanager
+    state: latest
+
+- name: Configure NetworkManager
+  ansible.builtin.copy:
+    src: NetworkManager.conf
+    dest: /etc/NetworkManager/NetworkManager.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: restart-networkmanager
+
+- name: Enable NetworkManager
+  ansible.builtin.systemd:
+    name: NetworkManager.service
+    enabled: yes
+    state: started
+
+- name: >
+    {{ networking_nm_dispatcher_enabled | ternary('Enable', 'Disable') }}
+    NetworkManager dispatcher
+  ansible.builtin.systemd:
+    name: NetworkManager-dispatcher.service
+    enabled: "{{ networking_nm_dispatcher_enabled }}"
+    state:
+      "{{ networking_nm_dispatcher_enabled | ternary('started', 'stopped') }}"
+
+- name: >
+    {{ networking_nm_wait_online_enabled | ternary('Enable', 'Disable') }}
+    NetworkManager wait-online
+  ansible.builtin.systemd:
+    name: NetworkManager-wait-online.service
+    enabled: "{{ networking_nm_wait_online_enabled }}"
+    state:
+      "{{ networking_nm_wait_online_enabled | ternary('started', 'stopped') }}"

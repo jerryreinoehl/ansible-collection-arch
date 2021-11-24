@@ -1,0 +1,11 @@
+---
+# defaults file for networking
+
+# When enabled configure NetworkManager.
+networking_nm_enabled: yes
+
+# When enabled enable NetworkManager-dispatcher.service.
+networking_nm_dispatcher_enabled: no
+
+# When enabled enable NetworkManager-wait-online.service.
+networking_nm_wait_online_enabled: no
