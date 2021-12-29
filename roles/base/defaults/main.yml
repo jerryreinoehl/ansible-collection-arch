@@ -29,6 +29,21 @@ base_packages:
   - man-db
   - man-pages
 
+# Users. Default username:password is arch:arch.
+base_users:
+  - name: arch
+    create_home: yes
+    shell: /usr/bin/bash
+    password:
+      '$6$Ix7SASYSf3uz2IBt$c4p1iqcN5L8hRdHd0x14tsEhmgGctA8a6CnJbKFrcpLFmwHoSbxp9yZ8XArIYBFB/LUvLvSMvD4xfna.AGGdc.'
+    groups:
+      - adm
+      - uucp
+      - wheel
+    generate_ssh_key: yes
+    ssh_key_type: ecdsa
+    ssh_key_bits: 521
+
 # When enabled configure opendoas.
 base_doas_enabled: yes
 
