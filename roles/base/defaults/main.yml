@@ -29,13 +29,13 @@ base_packages:
   - man-db
   - man-pages
 
-# Users. Default username:password is archlinux:archlinux.
+# Users. Default username:password is arch:arch.
 base_users:
-  - name: archlinux
+  - name: arch
     create_home: yes
     shell: /usr/bin/bash
     password:
-      '$6$UCJ6Fj5Fero5.6TT$9zR9pf4e5Whb1EK8GO/uxOLGrs4I217rc2hboq9T59a6En/yMOtojPxaURhHIx4pdcekUXSD9FWdl7eYemRy81'
+      '$6$Ix7SASYSf3uz2IBt$c4p1iqcN5L8hRdHd0x14tsEhmgGctA8a6CnJbKFrcpLFmwHoSbxp9yZ8XArIYBFB/LUvLvSMvD4xfna.AGGdc.'
     groups:
       - adm
       - uucp
