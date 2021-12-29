@@ -35,7 +35,7 @@ base_users:
     create_home: yes
     shell: /bin/bash
     password:
-      '$6$Ix7SASYSf3uz2IBt$c4p1iqcN5L8hRdHd0x14tsEhmgGctA8a6CnJbKFrcpLFmwHoSbxp9yZ8XArIYBFB/LUvLvSMvD4xfna.AGGdc.'
+      "$6$Ix7SASYSf3uz2IBt$c4p1iqcN5L8hRdHd0x14tsEhmgGctA8a6CnJbKFrcpLFmwHoSbxp9yZ8XArIYBFB/LUvLvSMvD4xfna.AGGdc."
     groups:
       - adm
       - uucp
