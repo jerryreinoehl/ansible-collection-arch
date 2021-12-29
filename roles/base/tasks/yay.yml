@@ -1,0 +1,67 @@
+---
+- name: Check if yay is already installed
+  ansible.builtin.command: pacman -Q yay
+  register: pacman_result
+  changed_when: false
+  failed_when:
+    - pacman_result.rc != 0
+    - "'not found' not in pacman_result.stderr"
+
+- block:
+  - name: Install required packages
+    community.general.pacman:
+      name: git
+      state: latest
+
+  - name: Create aurbuild user
+    ansible.builtin.user:
+      name: aurbuild
+      home: /aurbuild
+      state: present
+
+  - name: Clone yay git repo
+    become_user: aurbuild
+    ansible.builtin.git:
+      repo: https://aur.archlinux.org/yay.git
+      dest: /aurbuild/yay
+      version: master
+
+  - name: Get dependencies
+    become_user: aurbuild
+    ansible.builtin.shell:
+      # match all "depends" and "makedepends" in PKGBUILD
+      cmd: makepkg --printsrcinfo | awk '/\<(make)?depends\>/ {print $NF}'
+      chdir: /aurbuild/yay
+    register: depends_result
+
+  - name: Install dependencies
+    community.general.pacman:
+      name: "{{ depends_result.stdout_lines }}"
+      state: latest
+
+  - name: Build yay
+    become_user: aurbuild
+    ansible.builtin.command:
+      cmd: makepkg -f
+      chdir: /aurbuild/yay
+
+  - name: Get yay pkg name
+    find:
+      path: /aurbuild/yay/
+      pattern: 'yay-\d+\.\d+\.\d+-.*\.pkg\.tar\.zst'
+      use_regex: yes
+    register: find_result
+    failed_when: "find_result.files | length != 1 "
+
+  - name: Install yay
+    pacman:
+      name: "{{ find_result.files[0].path }}"
+      state: installed
+
+  when: "'not found' in pacman_result.stderr"
+
+- name: Remove aurbuild user
+  ansible.builtin.user:
+    name: aurbuild
+    remove: yes
+    state: absent

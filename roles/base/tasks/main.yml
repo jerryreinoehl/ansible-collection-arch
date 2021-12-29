@@ -74,3 +74,6 @@
 
 - ansible.builtin.import_tasks: dash.yml
   when: base_dash_sh_enabled
+
+- ansible.builtin.import_tasks: yay.yml
+  when: base_yay_enabled

@@ -55,3 +55,6 @@ base_grub_cfg: "/boot/grub/grub.cfg"
 
 # When enabled configure dash to be /bin/sh.
 base_dash_sh_enabled: yes
+
+# When enabled install yay AUR helper.
+base_yay_enabled: yes
