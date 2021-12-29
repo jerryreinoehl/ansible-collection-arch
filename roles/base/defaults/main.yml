@@ -17,7 +17,7 @@ base_locales:
 base_timezone: "America/Chicago"
 
 # Whether the hardware clock is in UTC or in local timezone.
-base_hwclock: "UTC" # "UTC" or "local"
+base_hwclock: "UTC"  # "UTC" or "local"
 
 # Number of simultaneous threads pacman should be configured to use.
 base_pacman_threads: 10
@@ -50,11 +50,11 @@ base_doas_enabled: yes
 # When enabled install microcode updates.
 base_ucode_enabled: yes
 
-# Path of grub.cfg
-base_grub_cfg: "/boot/grub/grub.cfg"
-
 # When enabled configure dash to be /bin/sh.
 base_dash_sh_enabled: yes
 
 # When enabled install yay AUR helper.
 base_yay_enabled: yes
+
+# Path of grub.cfg
+base_grub_cfg: "/boot/grub/grub.cfg"
