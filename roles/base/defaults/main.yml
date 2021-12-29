@@ -1,10 +1,10 @@
 ---
 # defaults file for base
 
-# System hostname
+# System hostname.
 base_hostname: "arch"
 
-# System locales
+# System locales.
 base_locales:
   - "en_US.UTF-8"
 
@@ -13,16 +13,16 @@ base_locales:
 # `base_lang` variable.
 #base_lang: "en_GB.UTF-8"
 
-# System timezone
+# System timezone.
 base_timezone: "America/Chicago"
 
 # Whether the hardware clock is in UTC or in local timezone.
 base_hwclock: "UTC"  # "UTC" or "local"
 
-# Number of simultaneous threads pacman should be configured to use.
+# Number of threads pacman should be configured to use.
 base_pacman_threads: 10
 
-# Packages to install
+# Packages to install.
 base_packages:
   - base
   - coreutils
@@ -56,5 +56,5 @@ base_dash_sh_enabled: yes
 # When enabled install yay AUR helper.
 base_yay_enabled: yes
 
-# Path of grub.cfg
+# Path of grub.cfg.
 base_grub_cfg: "/boot/grub/grub.cfg"
