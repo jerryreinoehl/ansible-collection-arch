@@ -46,7 +46,7 @@
       chdir: /aurbuild/yay
 
   - name: Get yay pkg name
-    find:
+    ansible.builtin.find:
       path: /aurbuild/yay/
       pattern: 'yay-\d+\.\d+\.\d+-.*\.pkg\.tar\.zst'
       use_regex: yes
@@ -54,7 +54,7 @@
     failed_when: "find_result.files | length != 1 "
 
   - name: Install yay
-    pacman:
+    community.general.pacman:
       name: "{{ find_result.files[0].path }}"
       state: installed
 
