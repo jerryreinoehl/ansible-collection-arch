@@ -51,7 +51,7 @@
       pattern: 'yay-\d+\.\d+\.\d+-.*\.pkg\.tar\.zst'
       use_regex: yes
     register: find_result
-    failed_when: "find_result.files | length != 1 "
+    failed_when: "find_result.files | length != 1"
 
   - name: Install yay
     community.general.pacman:
