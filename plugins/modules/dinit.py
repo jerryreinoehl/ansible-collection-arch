@@ -174,6 +174,7 @@ class DinitModule():
             "restarted": "restart",
             "reloaded": "reload"
         }[state]
+
         rc, out, err = self.module.run_command(
             f"{self.dinitctl} {state_command} {service}",
             check_rc=True
