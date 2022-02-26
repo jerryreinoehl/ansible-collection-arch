@@ -131,13 +131,13 @@ class DinitModule():
             changed=False
         )
 
-        if self.module.check_mode:
-            self.module.exit_json(**result)
-
         self.dinitctl = self.module.get_bin_path("dinitctl", True)
         self.service = self.module.params["name"]
 
     def run(self):
+        if self.module.check_mode:
+            self.module.exit_json(**self.result)
+
         if self.module.params["enabled"] == True:
             self.enable_service(self.service)
         elif self.module.params["enabled"] == False:
