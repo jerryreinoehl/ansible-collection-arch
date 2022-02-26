@@ -155,7 +155,7 @@ class DinitModule():
         if not self.is_service_enabled(service):
             rc, out, err = self.module.run_command(
                 f"{self.dinitctl} enable {service}",
-                check_rc = True
+                check_rc=True
             )
             self.result["changed"] = True
 
@@ -163,7 +163,7 @@ class DinitModule():
         if self.is_service_enabled(service):
             rc, out, err = self.module.run_command(
                 f"{self.dinitctl} disable {service}",
-                check_rc = True
+                check_rc=True
             )
             self.result["changed"] = True
 
@@ -176,7 +176,7 @@ class DinitModule():
         }[state]
         rc, out, err = self.module.run_command(
             f"{self.dinitctl} {state_command} {service}",
-            check_rc = True
+            check_rc=True
         )
 
         changed = True
