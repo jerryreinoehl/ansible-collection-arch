@@ -30,13 +30,7 @@
     name: "{{ base_timezone }}"
     hwclock: "{{ base_hwclock }}"
 
-- name: Configure pacman
-  ansible.builtin.template:
-    src: pacman.conf.j2
-    dest: /etc/pacman.conf
-    owner: root
-    group: root
-    mode: "0644"
+- ansible.builtin.import_tasks: pacman.yml
 
 - name: Update packages
   community.general.pacman:
