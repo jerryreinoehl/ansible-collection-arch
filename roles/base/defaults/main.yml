@@ -26,8 +26,6 @@ base_pacman_threads: 10
 base_packages:
   - base
   - coreutils
-  - man-db
-  - man-pages
 
 # Users. Default username:password is arch:arch.
 base_users:
