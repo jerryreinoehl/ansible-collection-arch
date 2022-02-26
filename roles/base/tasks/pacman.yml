@@ -1,0 +1,20 @@
+---
+- name: Enable pacman color output
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: '^#?\s*Color\b.*'
+    line: "Color"
+    insertafter: "[options]"
+
+- name: Enable pacman parallel downloads
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: '^#?\s*ParallelDownloads\b.*'
+    line: "ParallelDownloads = {{ base_pacman_threads }}"
+    insertafter: "[options]"
+
+- name: Pacman I Love Candy
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    insertafter: '^ParallelDownloads\b.*'
+    line: "ILoveCandy"
