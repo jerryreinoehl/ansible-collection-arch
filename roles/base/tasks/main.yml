@@ -55,11 +55,15 @@
   community.general.pacman:
     update_cache: yes
     upgrade: yes
+  tags:
+    - update_packages
 
 - name: Install packages
   community.general.pacman:
     name: "{{ base_packages }}"
     state: latest
+  tags:
+    - install_packages
 
 - name: Sync pacman files database
   ansible.builtin.command: pacman -Fy
