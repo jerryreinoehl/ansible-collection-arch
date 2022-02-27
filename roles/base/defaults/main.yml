@@ -22,6 +22,12 @@ base_locales:
 # System timezone.
 base_timezone: "America/Chicago"
 
+# The timezone module fails when it is unable to determine how to set the
+# timezone (for example when using dinit). Set `base_use_timezone_file`
+# to `yes` to skip the timezone module and link /etc/localtime to the correct
+# timezone file directly.
+base_use_timezone_file: no
+
 # Whether the hardware clock is in UTC or in local timezone.
 base_hwclock: "UTC"  # "UTC" or "local"
 

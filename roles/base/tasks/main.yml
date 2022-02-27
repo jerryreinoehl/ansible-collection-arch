@@ -36,6 +36,18 @@
   community.general.timezone:
     name: "{{ base_timezone }}"
     hwclock: "{{ base_hwclock }}"
+  when: not base_use_timezone_file
+
+- name: Set timezone
+  block:
+    - ansible.builtin.file:
+        src: "/usr/share/zoneinfo/{{ base_timezone }}"
+        dest: /etc/localtime
+        state: link
+    - ansible.builtin.command: >
+        hwclock --systohc
+          "{{ (base_hwclock == 'local') | ternary('-l', '-u') }}"
+  when: base_use_timezone_file
 
 - ansible.builtin.import_tasks: pacman.yml
 
