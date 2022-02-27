@@ -4,6 +4,12 @@
 # System hostname.
 base_hostname: "arch"
 
+# The hostname module fails when it is unable to determine how to set the
+# hostname (for example when using dinit). Set `base_use_hostname_file`
+# to `yes` to skip the hostname module and set the /etc/hostname file
+# directly.
+base_use_hostname_file: no
+
 # System locales.
 base_locales:
   - "en_US.UTF-8"

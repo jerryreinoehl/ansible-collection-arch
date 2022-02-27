@@ -3,6 +3,13 @@
 - name: Set hostname
   ansible.builtin.hostname:
     name: "{{ base_hostname }}"
+  when: not base_use_hostname_file
+
+- name: Set hostname
+  ansible.builtin.copy:
+    dest: /etc/hostname
+    content: "{{ base_hostname }}\n"
+  when: base_use_hostname_file
 
 - name: Generate /etc/hosts
   ansible.builtin.template:
