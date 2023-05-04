@@ -4,3 +4,7 @@ pacman_parallel_downloads: 10
 
 # Install contributed scripts and tools for pacman systems.
 pacman_install_contrib: true
+
+# Remove obsolete cached package files.
+# `pacman_install_contrib` must be `true`.
+pacman_install_cache_cleanup_hook: true

@@ -19,7 +19,18 @@
     insertafter: '^ParallelDownloads\b.*'
     line: "ILoveCandy"
 
-- name: Install pacman-contrib
-  community.general.pacman:
-    name: pacman-contrib
+- block:
+  - name: Install pacman-contrib
+    community.general.pacman:
+      name: pacman-contrib
+
+  - name: Install pacman cache cleanup hook
+    ansible.builtin.copy:
+      src: pacman-cache-cleanup.hook
+      dest: /etc/pacman.d/hooks/
+      mode: "0644"
+      directory_mode: "0755"
+      owner: root
+      group: root
+    when: pacman_install_cache_cleanup_hook
   when: pacman_install_contrib
