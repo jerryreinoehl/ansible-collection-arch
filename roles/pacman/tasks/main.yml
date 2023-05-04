@@ -18,3 +18,8 @@
     path: /etc/pacman.conf
     insertafter: '^ParallelDownloads\b.*'
     line: "ILoveCandy"
+
+- name: Install pacman-contrib
+  community.general.pacman:
+    name: pacman-contrib
+  when: pacman_install_contrib

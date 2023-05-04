@@ -1,2 +1,6 @@
 ---
+# Specifies number of concurrent download streams.
 pacman_parallel_downloads: 10
+
+# Install contributed scripts and tools for pacman systems.
+pacman_install_contrib: true
