@@ -1,0 +1,7 @@
+---
+# Don't run these hook scripts.
+# So to stop dhcpcd from touching your DNS settings or starting wpa_supplicant
+# you would do:
+#
+#   dhcpcd_nohook: ["resolv.conf", "wpa_supplicant"]
+dhcpcd_nohook: []

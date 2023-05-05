@@ -1,0 +1,20 @@
+---
+- name: Install dhcpcd
+  community.general.pacman:
+    name: dhcpcd
+    state: present
+
+- name: Configure dhcpcd
+  ansible.builtin.template:
+    src: dhcpcd.conf.j2
+    dest: /etc/dhcpcd.conf
+    mode: "0644"
+    owner: root
+    group: root
+  notify: restart-dhcpcd
+
+- name: Enable dhcpcd service
+  ansible.builtin.systemd:
+    name: dhcpcd.service
+    enabled: true
+    state: started
