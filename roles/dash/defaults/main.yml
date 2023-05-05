@@ -1,0 +1,3 @@
+---
+# Install pacman hook to relink /usr/bin/sh to dash.
+dash_install_pacman_hook: true
