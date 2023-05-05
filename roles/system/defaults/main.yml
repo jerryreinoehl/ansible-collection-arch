@@ -1,0 +1,18 @@
+---
+# System hostname.
+system_hostname: "arch"
+
+# System locales.
+system_locales:
+  - "en_US.UTF-8"
+
+# By default the first locale in `system_locales` is used to set the `LANG`
+# variable in /etc/locale.conf. This can be overridden by setting the
+# `system_lang` variable.
+#system_lang: "C.UTF-8"
+
+# System timezone.
+system_timezone: "America/Chicago"
+
+# Whether the hardware clock is in UTC or in local timezone.
+system_hwclock: "UTC"  # "UTC" or "local"

@@ -1,0 +1,22 @@
+---
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ system_hostname }}"
+
+- name: Generate locales
+  community.general.locale_gen:
+    name: "{{ item }}"
+  loop: "{{ system_locales }}"
+
+- name: Create locale.conf
+  ansible.builtin.copy:
+    dest: /etc/locale.conf
+    content: "LANG={{ system_lang | default(system_locales[0]) }}\n"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Set timezone
+  community.general.timezone:
+    name: "{{ system_timezone }}"
+    hwclock: "{{ system_hwclock }}"
