@@ -48,6 +48,7 @@ require dhcp_server_identifier
 slaac private
 noipv4ll
 
+# Don't run these hook scripts.
 {% if dhcpcd_nohook %}
 nohook {{ dhcpcd_nohook | join(", ") }}
 {% else %}
