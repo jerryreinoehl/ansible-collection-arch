@@ -3,8 +3,7 @@
 system_hostname: "arch"
 
 # System locales.
-system_locales:
-  - "en_US.UTF-8"
+system_locales: ["en_US.UTF-8"]
 
 # By default the first locale in `system_locales` is used to set the `LANG`
 # variable in /etc/locale.conf. This can be overridden by setting the
