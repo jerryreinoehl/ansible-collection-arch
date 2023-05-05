@@ -1,0 +1,23 @@
+---
+# See "reflector --help" for details.
+
+# Set the output path where the mirrorlist will be saved.
+reflector_save: "/etc/pacman.d/mirrorlist"
+
+# Select the transfer protocol.
+reflector_protocol: ["https"]
+
+# Select the country.
+# Consult the list of available countries with "reflector --list-countries" and
+# select the countries nearest to you or the ones that you trust.
+reflector_country: ["us"]
+
+# Use only the most recently synchronized mirrors.
+reflector_latest: 20
+
+# Sort the mirrors by synchronization time ("age") or by download rate
+# ("rate").
+reflector_sort: "rate"
+
+# Include at most `reflector_number` mirrors.
+reflector_number: 10
