@@ -1,0 +1,17 @@
+---
+# List of servers to use.
+dnscrypt_server_names: ["cloudflare", "cloudflare-ipv6"]
+
+# List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
+# Example with both IPv4 and IPv6:
+#   dnscrypt_listen_addresses: ["127.0.0.1:53", "[::1]:53"]
+#
+# To listen to all IPv4 addresses, use:
+#   dnscrypt_listen_addresses: ["0.0.0.0:53"]
+#
+# To listen to all IPv4+IPv6 addresses, use:
+#   dnscrypt_listen_addresses: ["[::]:53"]
+dnscrypt_listen_addresses: ["127.0.0.1:53"]
+
+# Server must support DNS security extensions (DNSSEC).
+dnscrypt_require_dnssec: true

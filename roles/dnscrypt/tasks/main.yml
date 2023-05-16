@@ -1,0 +1,20 @@
+---
+- name: Install dnscrypt-proxy
+  community.general.pacman:
+    name: dnscrypt-proxy
+    state: present
+
+- name: Configure dnscrypt-proxy
+  ansible.builtin.template:
+    src: dnscrypt-proxy.toml.j2
+    dest: /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+    owner: root
+    group: root
+    mode: "0644"
+  notify: restart-dnscrypt-proxy
+
+- name: Enable dnscrypt-proxy
+  ansible.builtin.systemd:
+    name: dnscrypt-proxy.service
+    enabled: true
+    state: started
